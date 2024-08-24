@@ -7,12 +7,27 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        primary: {
+          dark: "hsl(var(--primary-dark-channel) / <alpha-value>)",
+          meduim: "hsl(var(--primary-medium-channel) / <alpha-value>)",
+          light: "hsl(var(--primary-light-channel) / <alpha-value>)",
+        },
       },
     },
   },
-  plugins: [],
+  rippleui: {
+    themes: [
+      {
+        themeName: "light",
+        colorScheme: "light",
+        prefersColorScheme: true,
+        colors: {
+          primary: "#736226",
+          // backgroundPrimary: "#736226",
+        },
+      },
+    ],
+  },
+  plugins: [require("rippleui")],
 };
