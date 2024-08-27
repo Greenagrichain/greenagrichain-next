@@ -86,8 +86,9 @@ function ProductSidebar() {
         Categories
       </p>
       <div className="product-categories divide-y">
-        {Object.entries(categories).map((cat) => (
+        {Object.entries(categories).map((cat, _) => (
           <Button
+            key={cat + _}
             variant="ghost"
             className="block w-full text-left rounded-none"
           >{`${cat[0]} (${cat[1]})`}</Button>

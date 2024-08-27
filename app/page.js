@@ -1,13 +1,11 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
+
 export default function Home() {
+  redirect("/index.html", "replace");
   return (
     <main className="">
-      Redirecting...
-      <p className="text-xs text-neutral-800">
-        If this doesn't work, kindly visit our{" "}
-        <a href="https://greenagrichain.com" className="underline">
-          Homepage
-        </a>
-      </p>
+      <p>You are not meant to be here</p>
     </main>
   );
 }

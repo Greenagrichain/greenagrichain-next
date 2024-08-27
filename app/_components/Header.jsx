@@ -19,6 +19,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { name: "Home", href: "/index.html" },
@@ -31,28 +32,28 @@ const navLinks = [
 ];
 
 export default function Header() {
-  const [navActive, setNavActive] = useState(false);
-
   return (
     <header className="">
       <HeaderRibbon />
-      <nav className="flex container relative justify-between lg:justify-around items-center ">
+      <nav className="flex relative justify-between lg:justify-around items-center ">
         <div className="logo-container">
           <img
             src="/greenagrichain-logo.png"
             alt="Greenagrichain Logo"
-            className="logo p-2"
-            width={128}
-            height={128}
+            className="logo"
+            width={96}
+            height={96}
           />
         </div>
 
         <ul className="nav-links lg:flex gap-3 text-sm hidden">
           {navLinks.map((item) => (
-            <li>
+            <li key={item.name + item.href}>
               <a
                 href={item.href}
-                class="transition p-2 uppercase hover:text-primary-light"
+                class={cn("transition p-2 uppercase hover:text-primary", {
+                  "text-primary": item.active,
+                })}
               >
                 {item.name}
               </a>
@@ -68,13 +69,13 @@ export default function Header() {
 
         <DropdownMenu>
           <DropdownMenuTrigger className="lg:hidden">
-            {navActive ? <IconX /> : <IconMenu2 />}
+            <IconMenu2 />
           </DropdownMenuTrigger>
 
           <DropdownMenuContent asChild>
             <ul className="text-center w-screen lg:hidden gap-3 text-sm">
               {navLinks.map((item) => (
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem key={item.name + item.href} asChild>
                   <li className="hover:bg-primary/20 outline-none">
                     <a
                       href={item.href}
@@ -104,15 +105,15 @@ export default function Header() {
 
 const HeaderRibbon = () => {
   return (
-    <div className="header-ribbon hidden lg:flex max-w-[100vw] text-white *:p-3 *:grow font-light *:px-6 text-[0.8rem]">
-      <div className="bg-secondary basis-[30%] flex justify-end">
+    <div className="header-ribbon hidden lg:flex max-w-[100vw] text-white *:p-3 *:px-6 text-[0.8rem]">
+      <div className="bg-secondary width-[370px] shrink-0 flex justify-end">
         <span className="flex gap-2 items-center text-secondary-foreground">
           <IconClock />
-          <strong>Operating Hoursstrong</strong> Mon - Sat 9.00 - 18.00
+          <strong>Operating Hours</strong> Mon - Sat 9.00 - 18.00
         </span>
       </div>
 
-      <div className="basis-[70&] bg-primary">
+      <div className="grow bg-primary">
         <ul className="social-group flex divide-x justify-end items-center *:px-6">
           <li className="social flex items-center gap-1">
             <IconMail className="hover:text-primary-light" />
@@ -131,8 +132,8 @@ const HeaderRibbon = () => {
               IconBrandInstagram,
               IconBrandLinkedin,
               IconBrandTwitter,
-            ].map((SocialIcon) => (
-              <a href="#" rel="noreferrer">
+            ].map((SocialIcon, _) => (
+              <a key={_} href="#" rel="noreferrer">
                 <SocialIcon size={18} className="hover:text-primary-light" />
               </a>
             ))}

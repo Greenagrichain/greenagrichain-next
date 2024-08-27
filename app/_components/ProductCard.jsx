@@ -38,8 +38,11 @@ function ProductCard({
           className="group"
         >
           <CarouselContent className="-ml-4">
-            {images.map((image) => (
-              <CarouselItem className="w-[170px] h-[170px] relative pl-4">
+            {images.map((image, _) => (
+              <CarouselItem
+                key={image[0] + _}
+                className="w-[170px] h-[170px] relative pl-4"
+              >
                 <img
                   className="w-full h-full rounded-xl border object-cover object-center"
                   src={image[0] === "/" ? image : "/" + image}
@@ -69,8 +72,11 @@ function ProductCard({
           </span>
         </div>
         <div className="tags flex gap-1 flex-wrap">
-          {tags.map((tag) => (
-            <span className="py-0.5 px-2 text-xs cursor-pointer rounded-xl bg-secondary">
+          {tags.map((tag, _) => (
+            <span
+              key={tag + _}
+              className="py-0.5 px-2 text-xs cursor-pointer rounded-xl bg-secondary"
+            >
               {tag}
             </span>
           ))}
@@ -78,7 +84,7 @@ function ProductCard({
       </CardContent>
       <CardFooter className="flex flex-col items-start gap-1 mt-auto">
         {Object.entries(details).map((detail) => (
-          <p className="text-sm">
+          <p key={detail[0] + detail[1]} className="text-sm">
             <strong className="capitalize">
               {detail[0].split("_").join(" ")}
             </strong>
