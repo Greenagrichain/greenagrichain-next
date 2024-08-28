@@ -1,8 +1,20 @@
 "use client";
-import LoginForm from "@/components/LoginForm";
 import React, { useState } from "react";
+import {
+  Card,
+  CardTitle,
+  CardDescription,
+  CardHeader,
+  CardFooter,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import LoginForm from "@/components/LoginForm";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+
+import useAuthContext from "@/lib/hooks/useAuthContext";
+import { IconArrowRight } from "@tabler/icons-react";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -14,6 +26,7 @@ export default function Login() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const router = useRouter();
+  const authContext = useAuthContext();
 
   async function handleFormSubmit(e) {
     e.preventDefault();
@@ -33,6 +46,8 @@ export default function Login() {
 
       const data = await res.json();
       localStorage.setItem("_greenagrichain", JSON.stringify(data));
+      authContext.dispatch({ type: "LOGIN", payload: data });
+
       defineSuccess(
         data.message + ". You will now be redirected to your dashboard"
       );
@@ -52,6 +67,40 @@ export default function Login() {
     setSuccess(msg);
     setTimeout(() => setSuccess(""), 5000);
   }
+
+  if (authContext.authData) {
+    return (
+      <Card className="w-min mt-20 mx-auto">
+        <CardHeader>
+          <CardTitle>
+            User Found
+            <br />
+            <span className="text-muted-foreground text-xs font-normal">
+              {authContext.authData.user.email}
+            </span>
+          </CardTitle>
+          <CardDescription>
+            Log in as {authContext.authData.user.firstname}.
+          </CardDescription>
+        </CardHeader>
+        <CardFooter className="flex gap-4">
+          <Button className="group" asChild>
+            <Link href="/dashboard">
+              Continue
+              <IconArrowRight className="group-hover:ml-3 ml-2 transition-all" />
+            </Link>
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => authContext.dispatch({ type: "LOGOUT" })}
+          >
+            Use Another Account
+          </Button>
+        </CardFooter>
+      </Card>
+    );
+  }
+
   return (
     <div>
       <LoginForm

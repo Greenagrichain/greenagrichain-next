@@ -1,22 +1,25 @@
 "use client";
-import Link from "next/link";
-import { redirect } from "next/navigation";
 import Sidenav from "./Sidenav";
+import DashboardHeader from "./DashboardHeader";
+
+import useAuthContext from "@/lib/hooks/useAuthContext";
+import Link from "next/link";
+import DashboardFooter from "./DashboardFooter";
+import { redirect } from "next/navigation";
 
 export default function DashboardLayout({ children }) {
-  try {
-    let data = localStorage.getItem("_greenagrichain");
-    let userData = JSON.parse(data);
-    console.log(userData);
+  const { authData } = useAuthContext();
 
-    if (!userData) redirect("/login");
-  } catch (error) {
-    // redirect("/login");
-  }
+  if (!authData) redirect("/login");
+
   return (
-    <div className="dashboard flex min-h-screen w-full bg-muted/40">
+    <div className="dashboard relative flex min-h-screen w-full bg-muted/40">
       <Sidenav />
-      {children}
+      <main className="grow">
+        <DashboardHeader />
+        {children}
+        <DashboardFooter />
+      </main>
     </div>
   );
 }

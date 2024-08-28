@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -16,10 +17,11 @@ export default function LoginForm({
 }) {
   function handleFormData(e) {
     setFormData((pfd) => ({
-      [e.target.name]: e.target.value,
       ...pfd,
+      [e.target.name]: e.target.value,
     }));
   }
+
   return (
     <div className="w-full lg:grid lg:min-h-[500px] lg:grid-cols-2 xl:min-h-[700px]">
       <div className="flex items-center justify-center py-12">

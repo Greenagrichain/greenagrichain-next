@@ -14,12 +14,17 @@ import { usePathname } from "next/navigation";
 import navlinks from "./navlinks";
 import { cn } from "@/lib/utils";
 
-export default function Sidenav() {
+export default function Sidenav({ className = "" }) {
   const [openedLinks, setOpenedLinks] = useState({});
   const currentUrl = usePathname();
 
   return (
-    <aside className="z-10 hidden w-[255px] flex-col border-r bg-background sm:flex">
+    <aside
+      className={cn(
+        "z-10 hidden sticky top-0 self-start h-screen basis-[400px] flex-col border-r bg-background sm:flex",
+        className
+      )}
+    >
       <img
         src="/greenagrichain-logo.png"
         alt="Greenagrichain Logo"
@@ -36,7 +41,7 @@ export default function Sidenav() {
   );
 }
 
-function createNavlinks(links, openedLinks, setOpenedLinks, currentUrl) {
+export function createNavlinks(links, openedLinks, setOpenedLinks, currentUrl) {
   const navlink = (l) => (
     <li className="list-none" key={l.name + l.href}>
       <Link

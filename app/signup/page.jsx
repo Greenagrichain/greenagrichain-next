@@ -4,12 +4,18 @@ import { useState } from "react";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
-    firstName: "Mike",
-    lastName: "Sam",
-    email: "3gsfblpggp09@armasit.life",
-    phone: "+123456858",
-    password: "password",
-    confirmPassword: "password ",
+    // firstName: "Mike",
+    // lastName: "Sam",
+    // email: "3gsfblpggp09@armasit.life",
+    // phone: "+123456858",
+    // password: "password",
+    // confirmPassword: "password ",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const [waiting, setWaiting] = useState(false);
