@@ -14,8 +14,8 @@ export default function DashboardLayout({ children }) {
 
   return (
     <div className="dashboard relative flex min-h-screen w-full bg-muted/40">
-      <Sidenav />
-      <main className="grow">
+      <Sidenav className="max-w-[250px] min-w-[250px]" />
+      <main className="grow flex flex-col ">
         <DashboardHeader />
         {children}
         <DashboardFooter />

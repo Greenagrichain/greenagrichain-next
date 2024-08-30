@@ -199,7 +199,7 @@ export default function Dashboard() {
                       </TableHeader>
                       <TableBody></TableBody>
                     </Table>
-                    <div class="text-center p-4 text-muted-foreground">
+                    <div className="text-center p-4 text-muted-foreground">
                       No Records found
                     </div>
                   </CardContent>

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import {
   Collapsible,
@@ -21,7 +21,7 @@ export default function Sidenav({ className = "" }) {
   return (
     <aside
       className={cn(
-        "z-10 hidden sticky top-0 self-start h-screen basis-[400px] flex-col border-r bg-background sm:flex",
+        "z-10 hidden sticky top-0 self-start h-screen flex-col border-r bg-background sm:flex",
         className
       )}
     >
@@ -49,11 +49,12 @@ export function createNavlinks(links, openedLinks, setOpenedLinks, currentUrl) {
         className={cn(
           buttonVariants({ variant: "outline" }),
           " w-full justify-start items-end gap-1 border-none shadow-none cursor-pointer",
-          { "bg-primary/10": currentUrl?.replace(/\/$/, "") === l.href }
+          { "bg-primary/10": currentUrl.replace(/\/$/, "") === l.href }
         )}
       >
         {l.icon}
         {l.name}
+        {/* {currentUrl && console.log(currentUrl, l.href)} */}
       </Link>
     </li>
   );
@@ -62,7 +63,10 @@ export function createNavlinks(links, openedLinks, setOpenedLinks, currentUrl) {
     !link.children ? (
       navlink(link)
     ) : (
-      <Collapsible open={openedLinks[link.name]} key={link.name + link.href}>
+      <Collapsible
+        open={openedLinks[link.name] || currentUrl.includes(link.href)}
+        key={link.name + link.href}
+      >
         <CollapsibleTrigger
           asChild
           onClick={() =>
@@ -75,7 +79,12 @@ export function createNavlinks(links, openedLinks, setOpenedLinks, currentUrl) {
           {navlink(link)}
         </CollapsibleTrigger>
         <CollapsibleContent className="ml-6 border-s-2 pl-1">
-          {createNavlinks(link.children)}
+          {createNavlinks(
+            link.children,
+            openedLinks,
+            setOpenedLinks,
+            currentUrl
+          )}
         </CollapsibleContent>
       </Collapsible>
     )

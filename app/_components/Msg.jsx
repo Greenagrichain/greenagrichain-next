@@ -17,17 +17,10 @@ export default function Msg({ msg, type }) {
     },
   };
 
-  //   useEffect(() => {
-  //     let timerId = null;
-  //     timerId = setTimeout(handleClose, 5000);
-
-  //     return () => clearTimeout(timerId);
-  //   }, []);
-
   return (
     <div
       className={cn(
-        "relative p-2 rounded-lg text-sm border-4",
+        "relative p-2 rounded-lg text-sm border",
         types[type].style
       )}
     >

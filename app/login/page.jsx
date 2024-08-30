@@ -45,13 +45,16 @@ export default function Login() {
       );
 
       const data = await res.json();
-      localStorage.setItem("_greenagrichain", JSON.stringify(data));
-      authContext.dispatch({ type: "LOGIN", payload: data });
 
-      defineSuccess(
-        data.message + ". You will now be redirected to your dashboard"
-      );
-      router.push("/dashboard");
+      if (res.ok) {
+        localStorage.setItem("_greenagrichain", JSON.stringify(data));
+        authContext.dispatch({ type: "LOGIN", payload: data });
+        defineSuccess(data.message + ". Redirecting to dashboard...");
+        router.push("/dashboard");
+        return;
+      } else {
+        defineError(data.message);
+      }
     } catch (error) {
       defineError(error);
     }
@@ -61,14 +64,14 @@ export default function Login() {
 
   function defineError(msg) {
     setError(msg);
-    setTimeout(() => setError(""), 5000);
+    setTimeout(() => setError(""), 3000);
   }
   function defineSuccess(msg) {
     setSuccess(msg);
-    setTimeout(() => setSuccess(""), 5000);
+    setTimeout(() => setSuccess(""), 3000);
   }
 
-  if (authContext.authData) {
+  if (authContext.authData?.user && !waiting) {
     return (
       <Card className="w-min mt-20 mx-auto">
         <CardHeader>

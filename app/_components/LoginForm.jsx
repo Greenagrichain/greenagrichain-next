@@ -25,16 +25,18 @@ export default function LoginForm({
   return (
     <div className="w-full lg:grid lg:min-h-[500px] lg:grid-cols-2 xl:min-h-[700px]">
       <div className="flex items-center justify-center py-12">
-        <div className="mx-auto grid w-[350px] gap-6 p-4 ring-1 ring-primary shadow-md shadow-primary rounded-lg lg:ring-0 lg:shadow-none lg:bg-neutral-50">
+        <div className="mx-auto grid w-[350px] gap-6 p-4 ring-1 ring-primary shadow-md shadow-primary rounded-lg lg:ring-0 lg:shadow-none border">
           <div className="grid gap-2 text-center">
             <div className="text-center">
-              <img
-                className="inline"
-                src="/greenagrichain-logo.png"
-                alt="Logo"
-                width={72}
-                height={72}
-              />
+              <Link href="/">
+                <img
+                  className="inline"
+                  src="/greenagrichain-logo.png"
+                  alt="Logo"
+                  width={72}
+                  height={72}
+                />
+              </Link>
               <h1 className="text-3xl font-bold">Login</h1>
             </div>
             <p className="text-balance text-sm text-muted-foreground">

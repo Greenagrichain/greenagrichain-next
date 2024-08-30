@@ -26,7 +26,7 @@ export default function Logout() {
 
   useEffect(() => {
     if (authData) setLoggedOut(false);
-  }, []);
+  }, [authData]);
 
   return (
     <Card className="w-min mt-20 mx-auto">
@@ -51,7 +51,7 @@ export default function Logout() {
         ) : (
           <>
             <Button onClick={handleLogout}>
-              <Link href="/login">Logout</Link>
+              <a href="/login">Logout</a>
             </Button>
             <Button variant="outline" onClick={() => router.back()}>
               Take me back

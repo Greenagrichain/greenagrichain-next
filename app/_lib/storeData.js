@@ -43,6 +43,26 @@ export const products = [
     },
   },
   {
+    id: "AGR008",
+    name: "Compact Tractor",
+    description:
+      "Versatile 40HP compact tractor suitable for small to medium-sized farms.",
+    category: "Machinery",
+    tags: ["tractor", "farm-equipment", "compact"],
+    price: 35000,
+    unit: "per tractor",
+    stock: 20,
+    images: [
+      "products/compact-tractor-1.jpg",
+      "products/compact-tractor-2.jpg",
+    ],
+    details: {
+      horsepower: "40 HP",
+      fuel_type: "Diesel",
+      transmission: "8 forward, 8 reverse gears",
+    },
+  },
+  {
     id: "AGR002",
     name: "Precision Farming Drone",
     description:
@@ -136,6 +156,7 @@ export const products = [
     images: [
       "products/livestock-collars-1.jpg",
       "products/livestock-collars-2.jpg",
+      "products/livestock-collars-3.jpg",
     ],
     details: {
       battery_life: "Up to 5 years",
@@ -162,26 +183,7 @@ export const products = [
       includes: "Ventilation system, assembly tools",
     },
   },
-  {
-    id: "AGR008",
-    name: "Compact Tractor",
-    description:
-      "Versatile 40HP compact tractor suitable for small to medium-sized farms.",
-    category: "Machinery",
-    tags: ["tractor", "farm-equipment", "compact"],
-    price: 35000,
-    unit: "per tractor",
-    stock: 20,
-    images: [
-      "products/compact-tractor-1.jpg",
-      "products/compact-tractor-2.jpg",
-    ],
-    details: {
-      horsepower: "40 HP",
-      fuel_type: "Diesel",
-      transmission: "8 forward, 8 reverse gears",
-    },
-  },
+
   {
     id: "AGR009",
     name: "Beekeeping Starter Kit",

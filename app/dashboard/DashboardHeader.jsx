@@ -29,7 +29,6 @@ export default function DashboardHeader() {
     authData: { user },
   } = useAuthContext();
 
-  console.log(user);
   return (
     <div className="sticky top-0 z-30 flex mb-4 h-14 items-center gap-4 border-b bg-background px-4 py-2 sm:static sm:h-auto sm:bg-transparent sm:px-6">
       <Sheet className="mobile-nav">
@@ -79,7 +78,9 @@ export default function DashboardHeader() {
             </span>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Settings</DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/dashboard/settings">Settings</Link>
+          </DropdownMenuItem>
           <DropdownMenuItem>Support</DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
