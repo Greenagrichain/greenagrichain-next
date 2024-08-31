@@ -15,7 +15,7 @@ export default function WithdrawalHistory() {
         </p>
         <div className="btn-group space-x-2">
           <Button className="mt-4" asChild>
-            <Link href="transaction/withdrawal/">Withdraw</Link>
+            <Link href="transactions/withdrawal/">Withdraw</Link>
           </Button>
           <Button className="mt-4" variant="outline" asChild>
             <Link href="/transactions/deposit/">Fund account</Link>

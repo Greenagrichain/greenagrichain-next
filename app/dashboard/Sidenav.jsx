@@ -21,7 +21,7 @@ export default function Sidenav({ className = "" }) {
   return (
     <aside
       className={cn(
-        "z-10 hidden sticky top-0 self-start h-screen flex-col border-r bg-background sm:flex",
+        "z-10 hidden sticky top-0 self-start h-screen overflow-y-auto flex-col border-r bg-background sm:flex",
         className
       )}
     >
@@ -78,7 +78,7 @@ export function createNavlinks(links, openedLinks, setOpenedLinks, currentUrl) {
         >
           {navlink(link)}
         </CollapsibleTrigger>
-        <CollapsibleContent className="ml-6 border-s-2 pl-1">
+        <CollapsibleContent className="ml-6 border-s-2 pl-1 space-y-1 mt-1">
           {createNavlinks(
             link.children,
             openedLinks,

@@ -96,7 +96,9 @@ export default function Dashboard() {
                   </CardDescription>
                 </CardHeader>
                 <CardFooter>
-                  <Button>Create New Order</Button>
+                  <Button asChild>
+                    <Link href="/dashboard/transactions">Create New Order</Link>
+                  </Button>
                 </CardFooter>
               </Card>
               <Card x-chunk="dashboard-05-chunk-1">
@@ -176,9 +178,7 @@ export default function Dashboard() {
                 <Card x-chunk="dashboard-05-chunk-3">
                   <CardHeader className="px-7">
                     <CardTitle>Orders</CardTitle>
-                    <CardDescription>
-                      Recent orders from your store.
-                    </CardDescription>
+                    <CardDescription>Recent orders from store.</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <Table>

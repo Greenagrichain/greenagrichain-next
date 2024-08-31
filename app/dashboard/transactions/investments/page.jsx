@@ -15,12 +15,14 @@ export default function Component() {
         </p>
         <div className="flex gap-2">
           <Button className="mt-4">
-            <Link variant="outline" href="deposit/">
+            <Link variant="outline" href="/products/">
               Take me to store
             </Link>
           </Button>
           <Button className="mt-4">
-            <Link href="deposit/">Fund your accounts</Link>
+            <Link href="/dashboard/transactions/deposit/">
+              Fund your accounts
+            </Link>
           </Button>
         </div>
       </div>

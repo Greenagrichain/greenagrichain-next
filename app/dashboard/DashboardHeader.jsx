@@ -78,12 +78,12 @@ export default function DashboardHeader() {
             </span>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
+          <DropdownMenuItem asChild className="cursor-pointer">
             <Link href="/dashboard/settings">Settings</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>Support</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
+          <DropdownMenuItem asChild className="cursor-pointer">
             <Link href="/logout">Logout</Link>
           </DropdownMenuItem>
         </DropdownMenuContent>
