@@ -2,17 +2,17 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { IconFile, IconListTree } from "@tabler/icons-react";
-
-import { Badge } from "@/components/ui/badge";
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+  IconFile,
+  IconListTree,
+  IconCopy,
+  IconTruck,
+  IconDotsVertical,
+  IconCreditCard,
+  IconChevronRight,
+  IconChevronLeft,
+} from "@tabler/icons-react";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -31,7 +31,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import {
   Pagination,
   PaginationContent,
@@ -48,9 +47,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { redirect } from "next/navigation";
-import { useRouter } from "next/router";
 import useAuthContext from "@/lib/hooks/useAuthContext";
+import EarnedSpentChart from "./EarnedSpentChart";
+import TotalBalanceChart from "./TotalBalanceChart";
+import { TransactionsChart } from "./TransactionsChart";
 
 export default function Dashboard() {
   const {
@@ -86,8 +86,8 @@ export default function Dashboard() {
               </Button>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
-              <Card className="sm:col-span-2" x-chunk="dashboard-05-chunk-0">
+            <div className="flex gap-4 flex-wrap justify-center">
+              {/* <Card className="sm:col-span-2" x-chunk="dashboard-05-chunk-0">
                 <CardHeader className="pb-3">
                   <CardTitle>Welcome back, {user.lastname}</CardTitle>
                   <CardDescription className="text-balance max-w-lg leading-relaxed">
@@ -100,34 +100,70 @@ export default function Dashboard() {
                     <Link href="/dashboard/transactions">Create New Order</Link>
                   </Button>
                 </CardFooter>
-              </Card>
-              <Card x-chunk="dashboard-05-chunk-1">
+              </Card> */}
+              <Card
+                className="bg-primary flex flex-col grow text-center basis-1/2"
+                x-chunk="dashboard-05-chunk-1"
+              >
                 <CardHeader className="pb-2">
-                  <CardDescription>This Week</CardDescription>
-                  <CardTitle className="text-4xl">$0</CardTitle>
+                  <CardDescription className="text-primary-foreground">
+                    Total Balance
+                  </CardDescription>
+                  <CardTitle className="text-4xl text-primary-foreground">
+                    <TotalBalanceChart />
+                  </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="text-xs text-muted-foreground">
-                    +25% from last week
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Progress value={1} aria-label="25% increase" />
+                <CardFooter className="mt-auto">
+                  <Button variant="outline" className="w-full">
+                    <Link href="/transactions/deposit">Fund your account</Link>
+                  </Button>
                 </CardFooter>
               </Card>
-              <Card x-chunk="dashboard-05-chunk-2">
-                <CardHeader className="pb-2">
-                  <CardDescription>This Month</CardDescription>
-                  <CardTitle className="text-4xl">$0</CardTitle>
+              <div className="flex gap-4 flex-col flex-wrap basis-1/3 justify-between grow *:grow">
+                <Card x-chunk="dashboard-05-chunk-1" className="flex flex-col">
+                  <CardHeader className="pb-2">
+                    <CardDescription>This Week</CardDescription>
+                    <CardTitle className="text-4xl">$0.00</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-xs text-muted-foreground">
+                      +0% from last week
+                    </div>
+                  </CardContent>
+                  <CardFooter className="mt-auto">
+                    <Progress value={1} aria-label="25% increase" />
+                  </CardFooter>
+                </Card>
+                <Card x-chunk="dashboard-05-chunk-2" className="flex flex-col">
+                  <CardHeader className="pb-2">
+                    <CardDescription>This Month</CardDescription>
+                    <CardTitle className="text-4xl">$0.00</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-xs text-muted-foreground">
+                      +0% from last month
+                    </div>
+                  </CardContent>
+                  <CardFooter className="mt-auto">
+                    <Progress value={1} aria-label="0% increase" />
+                  </CardFooter>
+                </Card>
+              </div>
+            </div>
+
+            <div className="charts">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Expenses</CardTitle>
+                  <CardDescription>
+                    <span className="font-bold text-green-500">In: </span> $0.00{" "}
+                    <span className="font-bold text-red-500">Out: </span> $0.00
+                  </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="text-xs text-muted-foreground">
-                    +0% from last month
-                  </div>
+                <CardContent className="flex justify-around flex-wrap">
+                  <EarnedSpentChart />
+                  <TransactionsChart />
                 </CardContent>
-                <CardFooter>
-                  <Progress value={1} aria-label="0% increase" />
-                </CardFooter>
               </Card>
             </div>
 
@@ -177,14 +213,14 @@ export default function Dashboard() {
               <TabsContent value="week">
                 <Card x-chunk="dashboard-05-chunk-3">
                   <CardHeader className="px-7">
-                    <CardTitle>Orders</CardTitle>
-                    <CardDescription>Recent orders from store.</CardDescription>
+                    <CardTitle>Transactions and Activities</CardTitle>
+                    <CardDescription>Your recent transactions.</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <Table>
                       <TableHeader>
                         <TableRow>
-                          <TableHead>Customer</TableHead>
+                          <TableHead>Transaction</TableHead>
                           <TableHead className="hidden sm:table-cell">
                             Type
                           </TableHead>

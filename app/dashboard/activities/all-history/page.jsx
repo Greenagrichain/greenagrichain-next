@@ -7,8 +7,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import DepositHistory from "./DepositHistory";
 
-const activities = ["Account", "Investment", "Deposit"];
+const activities = {
+  Deposits: <DepositHistory />,
+};
 export default function AllHistory() {
   const [currentActivity, setCurrentActivity] = useState("");
 
@@ -25,7 +28,7 @@ export default function AllHistory() {
             <SelectValue placeholder="Select an activity" />
           </SelectTrigger>
           <SelectContent>
-            {activities.map((activity, _) => (
+            {Object.keys(activities).map((activity, _) => (
               <SelectItem key={activity + _} value={activity}>
                 {activity}
               </SelectItem>
@@ -34,15 +37,15 @@ export default function AllHistory() {
         </Select>
       </div>
 
-      <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed py-20 m-2 shadow-sm">
-        <div className="flex flex-col items-center gap-1 text-center">
+      {currentActivity ? (
+        activities[currentActivity]
+      ) : (
+        <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed py-20 m-2 shadow-sm">
           <h3 className="text-2xl font-bold tracking-tight">
-            {currentActivity
-              ? `You have no ${currentActivity} History`
-              : "Select an activity to view"}
+            Select an activity to view it&apos;s history
           </h3>
         </div>
-      </div>
+      )}
     </div>
   );
 }

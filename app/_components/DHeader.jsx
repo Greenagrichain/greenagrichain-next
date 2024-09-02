@@ -18,8 +18,8 @@ import { IconLayoutSidebar, IconUser } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { createNavlinks } from "./Sidenav";
-import navlinks from "./navlinks";
+import { createNavlinks } from "./DSidenav";
+import navlinks from "../dashboard/userRoutes";
 import useAuthContext from "@/lib/hooks/useAuthContext";
 
 export default function DashboardHeader() {

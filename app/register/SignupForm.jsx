@@ -40,7 +40,7 @@ export default function SignupForm({
               <h1 className="text-3xl font-bold">Sign Up</h1>
               <img
                 className=""
-                src="/greenagrichain-logo.png"
+                src="/images/greenagrichain-logo.png"
                 alt="Logo"
                 width={72}
                 height={72}

@@ -137,17 +137,17 @@ p {
 
 *::-moz-selection {
   background: var(--primary-medium);
-  color: #fff;
+  /* color: #fff; */
   text-shadow: none;
 }
 ::-moz-selection {
   background: var(--primary-medium);
-  color: #fff;
+  /* color: #fff; */
   text-shadow: none;
 }
 ::selection {
   background: var(--primary-medium);
-  color: #fff;
+  /* color: #fff; */
   text-shadow: none;
 }
 
@@ -1154,6 +1154,7 @@ a.checkout-button:hover,
 .featured-imagebox-team.style2:hover .ttm-team-box-view-overlay,
 .color-trigger {
   background-color: var(--primary-medium);
+  color: #123;
 }
 
 /** Skin-border-color **/

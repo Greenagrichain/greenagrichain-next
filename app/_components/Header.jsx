@@ -38,7 +38,7 @@ export default function Header() {
       <nav className="flex relative justify-between lg:justify-around items-center ">
         <div className="logo-container">
           <img
-            src="/greenagrichain-logo.png"
+            src="/images/greenagrichain-logo.png"
             alt="Greenagrichain Logo"
             className="logo"
             width={96}

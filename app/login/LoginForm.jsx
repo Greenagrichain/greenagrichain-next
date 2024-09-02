@@ -31,7 +31,7 @@ export default function LoginForm({
               <Link href="/">
                 <img
                   className="inline"
-                  src="/greenagrichain-logo.png"
+                  src="/images/greenagrichain-logo.png"
                   alt="Logo"
                   width={72}
                   height={72}

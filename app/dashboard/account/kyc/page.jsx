@@ -1,35 +1,48 @@
 "use client";
 import { useState } from "react";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectValue,
-  SelectTrigger,
-} from "@/components/ui/select";
-
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useToast } from "@/components/ui/use-toast";
-import { IconRefresh } from "@tabler/icons-react";
+import CustomAlert from "@/components/CustomAlert";
+import KYCForm from "./KYCForm";
+import axiosInstance from "@/lib/axiosInstance";
+import useAuthContext from "@/lib/hooks/useAuthContext";
+import { toast } from "sonner";
+import KYCStatus from "./KYCStatus";
 
 export default function KYC() {
-  const [kycInfo, setKycInfo] = useState({
-    method: "",
-  });
-  const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
+  const [isFormActive, setIsFormActive] = useState(false);
+  const { authData: user } = useAuthContext();
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  async function handleFormSubmit(formData, handleSuccess, handleError) {
+    if (!formData.identificationImage) {
+      return handleError("Must select a valid image");
+    }
+    if (Object.values(formData).some((value) => value === "")) {
+      return handleError("All fields are required to proceed");
+    }
+
+    try {
+      const response = await axiosInstance.post("/api/kyc", {
+        userId: user.id,
+        image: formData.identificationImage,
+        address: formData.address,
+        nationality: formData.nationality,
+        identification: formData.identificationMethod,
+        gender: formData.gender,
+      });
+
+      handleSuccess(response.data.message);
+      toast.success("KYC Record created successfully");
+      console.log(response);
+    } catch (error) {
+      handleError(error.response ? error.response.data.message : error.message);
+      toast.error("Failed to create KYC Record");
+    }
   }
 
   return (
@@ -41,55 +54,11 @@ export default function KYC() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-          <Select
-            value={kycInfo.method}
-            onValueChange={(e) => setKycInfo((pdd) => ({ ...pdd, method: e }))}
-            name="method"
-            required
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Select a verification method" />
-            </SelectTrigger>
-            <SelectContent>
-              {["Drivers License", "National ID", "Passport"].map(
-                (method, _) => (
-                  <SelectItem value={method} key={method + _}>
-                    {method}
-                  </SelectItem>
-                )
-              )}
-            </SelectContent>
-          </Select>
-
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="picture">Front page/view</Label>
-            <Input id="picture" type="file" />
-          </div>
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="picture">Back page/view</Label>
-            <Input id="picture" type="file" />
-          </div>
-
-          <Button
-            onClick={async () => {
-              setIsLoading(true);
-              await new Promise((res) => setTimeout(res, 5000));
-
-              toast({
-                title: "Uh oh! Something went wrong.",
-                description:
-                  "We had a problem with your request. Please try again later",
-                variant: "destructive",
-              });
-              setIsLoading(false);
-            }}
-            disabled={isLoading}
-          >
-            {isLoading && <IconRefresh className="animate-spin mr-1" />}
-            Verify
-          </Button>
-        </form>
+        {isFormActive ? (
+          <KYCForm handleFormSubmit={handleFormSubmit} />
+        ) : (
+          <KYCStatus setIsFormActive={setIsFormActive} />
+        )}
       </CardContent>
     </Card>
   );

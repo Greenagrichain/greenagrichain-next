@@ -15,13 +15,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import { IconClipboard, IconClipboardCheck } from "@tabler/icons-react";
+import { Separator } from "@/components/ui/separator";
 
 import useAuthContext from "@/lib/hooks/useAuthContext";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { Separator } from "@/components/ui/separator";
+import CopyToClipboard from "@/components/CopyToClipboard";
 
 export default function Referrals() {
   const { authData } = useAuthContext();
@@ -36,7 +33,7 @@ export default function Referrals() {
         </CardHeader>
         <CardContent>
           <p>Referrer Link: </p>
-          <CopyContentToClipboard
+          <CopyToClipboard
             data={`http://greenagrichain.com/register?ref=${authData.token.slice(
               0,
               9
@@ -54,40 +51,6 @@ export default function Referrals() {
       </Card>
 
       <ReferrerList />
-    </div>
-  );
-}
-
-function CopyContentToClipboard({ data, className = "" }) {
-  const [copied, setCopied] = useState(false);
-
-  function handleCopy() {
-    window.navigator.clipboard.writeText(data);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  }
-  return (
-    <div
-      className={cn(
-        "px-2 py-1 rounded-lg inline-flex text-sm border items-center gap-2",
-        className
-      )}
-    >
-      <a
-        href={data}
-        rel="noreferrer"
-        className="hover:underline"
-        target="_blank"
-      >
-        {data}
-      </a>
-      <Button variant="outline" size="icon" onClick={handleCopy}>
-        {copied ? (
-          <IconClipboardCheck size={20} />
-        ) : (
-          <IconClipboard size={20} />
-        )}
-      </Button>
     </div>
   );
 }

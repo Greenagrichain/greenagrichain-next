@@ -11,10 +11,9 @@ import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import navlinks from "./navlinks";
 import { cn } from "@/lib/utils";
 
-export default function Sidenav({ className = "" }) {
+export default function Sidenav({ className = "", navlinks }) {
   const [openedLinks, setOpenedLinks] = useState({});
   const currentUrl = usePathname();
 
@@ -26,7 +25,7 @@ export default function Sidenav({ className = "" }) {
       )}
     >
       <img
-        src="/greenagrichain-logo.png"
+        src="/images/greenagrichain-logo.png"
         alt="Greenagrichain Logo"
         width={96}
         height={96}

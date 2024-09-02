@@ -8,7 +8,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import LoginForm from "@/components/LoginForm";
+import LoginForm from "./LoginForm";
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";

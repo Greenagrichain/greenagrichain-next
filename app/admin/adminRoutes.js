@@ -17,14 +17,13 @@ import {
   IconFileInvoice,
 } from "@tabler/icons-react";
 
-const navlinks = [
-  { name: "Dashboard", href: "/dashboard", icon: <IconHome /> },
-  { name: "Plans", href: "/dashboard/plans", icon: <IconChecklist /> },
+const adminRoutes = [
+  { name: "Dashboard", href: "/admin/dashboard", icon: <IconHome /> },
+  { name: "Plans", href: "/admin/plans", icon: <IconChecklist /> },
   {
     name: "Transactions",
-    href: "/dashboard/transactions",
+    href: "/admin/transactions",
     icon: <IconCashRegister />,
-    exact: true,
     children: [
       {
         name: "Deposit",
@@ -36,11 +35,11 @@ const navlinks = [
         href: "/dashboard/transactions/investments",
         icon: <IconBusinessplan />,
       },
-      {
-        name: "Withdrawal",
-        href: "/dashboard/transactions/withdrawal",
-        icon: <IconCircleArrowDownLeft />,
-      },
+      // {
+      //   name: "Withdrawal",
+      //   href: "/dashboard/transactions/withdrawal",
+      //   icon: <IconCircleArrowDownLeft />,
+      // },
     ],
   },
   {
@@ -101,4 +100,4 @@ const navlinks = [
   },
 ];
 
-export default navlinks;
+export default adminRoutes;
