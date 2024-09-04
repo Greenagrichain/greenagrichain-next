@@ -18,7 +18,7 @@ export default function KYCStatus({ setIsFormActive }) {
     });
   }
 
-  let status = data.data
+  let status = data?.data
     .find((kyc) => kyc.userId === user.id)
     ?.status.toUpperCase();
 

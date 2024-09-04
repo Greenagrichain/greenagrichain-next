@@ -1,6 +1,8 @@
 "use client";
+import axiosInstance from "@/lib/axiosInstance";
 import RegisterForm from "./SignupForm";
 import { useState } from "react";
+import { flushSync } from "react-dom";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -12,56 +14,49 @@ export default function Register() {
     confirmPassword: "",
   });
 
-  const [waiting, setWaiting] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
   async function handleFormSubmit(e) {
     e.preventDefault();
-
-    if (formData.password.length < 6) {
-      return defineError("Password must be longer than 6 characters");
-    }
-
-    if (formData.password !== formData.confirmPassword) {
-      return defineError("Password does not match");
-    }
+    setIsLoading(true);
 
     try {
-      const res = await fetch(
-        `${`https://greenagrichain-backend.onrender.com`}/api/auth/register`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            firstname: formData.firstName,
-            lastname: formData.lastName,
-            number: formData.phone,
-            email: formData.email,
-            password: formData.password,
-            confirmPassword: formData.confirmPassword,
-          }),
-        }
-      );
+      if (Object.values(formData).some((field) => field === "")) {
+        throw Error("All fields are required");
+      }
+      if (formData.password.length < 6) {
+        throw Error("Password must be longer than 6 characters");
+      }
 
-      const data = await res.json();
-      if (!res.ok) throw Error(data.message || "A server error occured");
+      if (formData.password !== formData.confirmPassword) {
+        throw Error("Password does not match");
+      }
+
+      const response = await axiosInstance.post("/api/auth/register", {
+        firstname: formData.firstName,
+        lastname: formData.lastName,
+        number: formData.phone,
+        email: formData.email,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
+      });
 
       defineSuccess("Check your email for verification link");
-    } catch (err) {
-      defineError(err.message || "An unkown error occurred");
+    } catch (error) {
+      defineError(error.response ? error.response.data.message : error.message);
     }
+    setIsLoading(false);
   }
 
   function defineError(msg) {
     setError(msg);
-    setTimeout(() => setError(""), 5000);
+    setTimeout(() => setError(""), 2000);
   }
   function defineSuccess(msg) {
     setSuccess(msg);
-    setTimeout(() => setSuccess(""), 5000);
+    setTimeout(() => setSuccess(""), 2000);
   }
 
   return (
@@ -69,14 +64,10 @@ export default function Register() {
       <RegisterForm
         formData={formData}
         setFormData={setFormData}
-        handleFormSubmit={(e) => {
-          setWaiting(true);
-          handleFormSubmit(e);
-          setWaiting(false);
-        }}
+        handleFormSubmit={handleFormSubmit}
         error={error}
         success={success}
-        waiting={waiting}
+        isLoading={isLoading}
       />
     </>
   );

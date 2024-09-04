@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Msg from "@/components/Msg";
+import Loader from "@/components/Loader";
 
 export default function SignupForm({
   formData,
@@ -19,7 +21,7 @@ export default function SignupForm({
   handleFormSubmit,
   error,
   success,
-  waiting,
+  isLoading,
 }) {
   function handleFormData(e) {
     setFormData((pfd) => ({ ...pfd, [e.target.name]: e.target.value }));
@@ -126,16 +128,15 @@ export default function SignupForm({
                 msg={success ? success : error}
                 type={success ? "success" : "error"}
               />
-              {waiting ? (
-                <Button disabled>
-                  <span className="p-1 m-1 rounded-full border-4 border-s-transparent animate-spin "></span>
-                  Creating your account...
-                </Button>
-              ) : (
-                <Button type="submit" className="w-full">
-                  Create an account
-                </Button>
-              )}
+              <Button type="submit" disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <Loader /> Creating your account...
+                  </>
+                ) : (
+                  "Create an account"
+                )}
+              </Button>
             </div>
           </form>
           <div className="mt-4 text-center text-sm">

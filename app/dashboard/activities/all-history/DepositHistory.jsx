@@ -39,8 +39,8 @@ export default function DepositHistory() {
     currency: { label: "Currency", className: "", childrenClassName: "" },
     status: {
       label: "Status",
-      render: (text) => {
-        let status = text.toUpperCase();
+      render: (row, col) => {
+        let status = row[col].toUpperCase();
         return (
           <Badge
             className={cn(

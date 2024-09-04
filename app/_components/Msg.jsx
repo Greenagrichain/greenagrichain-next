@@ -4,8 +4,9 @@ import {
 } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 
-export default function Msg({ msg, type }) {
-  if (!msg) return null;
+export default function Msg({ msg: message, type: variant }) {
+  if (!message) return null;
+
   const types = {
     error: {
       style: "bg-red-500 border-red-600 text-red-50",
@@ -21,11 +22,11 @@ export default function Msg({ msg, type }) {
     <div
       className={cn(
         "relative p-2 rounded-lg text-sm border",
-        types[type].style
+        types[variant].style
       )}
     >
       <p className="flex gap-2 items-center">
-        {types[type].icon} {msg}
+        {types[variant].icon} {message}
       </p>
     </div>
   );

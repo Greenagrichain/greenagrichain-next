@@ -1,6 +1,5 @@
 "use client";
 import Loader from "@/components/Loader";
-import { IconRotate } from "@tabler/icons-react";
 import { createContext, useEffect, useState, useReducer } from "react";
 
 export const AuthContext = createContext();
@@ -11,9 +10,11 @@ export function AuthContextProvider({ children }) {
 
   useEffect(() => {
     const storedAuthData = JSON.parse(localStorage.getItem("_greenagrichain"));
-
     if (storedAuthData) {
-      dispatch({ type: "LOGIN", payload: storedAuthData });
+      dispatch({
+        type: "LOGIN",
+        payload: { ...storedAuthData, userFound: true },
+      });
     }
 
     setIsLoading(false);

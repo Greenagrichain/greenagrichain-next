@@ -50,7 +50,7 @@ export default function Logout() {
           </>
         ) : (
           <>
-            <Button onClick={handleLogout}>
+            <Button onClick={handleLogout} asChild>
               <a href="/login">Logout</a>
             </Button>
             <Button variant="outline" onClick={() => router.back()}>

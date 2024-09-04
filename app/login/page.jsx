@@ -1,20 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import {
-  Card,
-  CardTitle,
-  CardDescription,
-  CardHeader,
-  CardFooter,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+
 import LoginForm from "./LoginForm";
 
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 import useAuthContext from "@/lib/hooks/useAuthContext";
-import { IconArrowRight } from "@tabler/icons-react";
+import axiosInstance from "@/lib/axiosInstance";
+import UserFoundCard from "./UserFoundCard";
+import AdminFoundCard from "./AdminFoundCard";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -22,44 +16,36 @@ export default function Login() {
     password: "",
   });
 
-  const [waiting, setWaiting] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
   const router = useRouter();
   const authContext = useAuthContext();
 
   async function handleFormSubmit(e) {
     e.preventDefault();
-    setWaiting(true);
+    setIsLoading(true);
 
     try {
-      const res = await fetch(
-        `${"https://greenagrichain-backend.onrender.com"}/api/auth/login`,
-        {
-          method: "POST",
-          body: JSON.stringify(formData),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axiosInstance.post("/api/auth/login", formData);
 
-      const data = await res.json();
+      localStorage.setItem("_greenagrichain", JSON.stringify(response.data));
+      authContext.dispatch({ type: "LOGIN", payload: response.data });
+      defineSuccess(response.data.message + ". Redirecting to dashboard...");
 
-      if (res.ok) {
-        localStorage.setItem("_greenagrichain", JSON.stringify(data));
-        authContext.dispatch({ type: "LOGIN", payload: data });
-        defineSuccess(data.message + ". Redirecting to dashboard...");
-        router.push("/dashboard");
-        return;
+      if (response.data.user.role === "ADMIN") {
+        setIsAdmin(true);
       } else {
-        defineError(data.message);
+        router.push("/dashboard");
       }
     } catch (error) {
-      defineError(error);
+      defineError(error.response ? error.response.data.message : error.message);
+      console.log(error);
     }
 
-    setWaiting(false);
+    setIsLoading(false);
   }
 
   function defineError(msg) {
@@ -68,40 +54,23 @@ export default function Login() {
   }
   function defineSuccess(msg) {
     setSuccess(msg);
-    setTimeout(() => setSuccess(""), 3000);
+    setTimeout(() => setSuccess(""), 5000);
   }
 
-  if (authContext.authData?.user && !waiting) {
+  if (authContext.authData?.userFound) {
     return (
-      <Card className="w-min mt-20 mx-auto">
-        <CardHeader>
-          <CardTitle>
-            User Found
-            <br />
-            <span className="text-muted-foreground text-xs font-normal">
-              {authContext.authData.user.email}
-            </span>
-          </CardTitle>
-          <CardDescription>
-            Log in as {authContext.authData.user.firstname}.
-          </CardDescription>
-        </CardHeader>
-        <CardFooter className="flex gap-4">
-          <Button className="group" asChild>
-            <Link href="/dashboard">
-              Continue
-              <IconArrowRight className="group-hover:ml-3 ml-2 transition-all" />
-            </Link>
-          </Button>
-          <Button
-            variant="outline"
-            onClick={() => authContext.dispatch({ type: "LOGOUT" })}
-          >
-            Use Another Account
-          </Button>
-        </CardFooter>
-      </Card>
+      <>
+        {authContext.authData.user.role === "ADMIN" ? (
+          <AdminFoundCard authContext={authContext} />
+        ) : (
+          <UserFoundCard authContext={authContext} />
+        )}
+      </>
     );
+  }
+
+  if (isAdmin) {
+    return <AdminFoundCard authContext={authContext} />;
   }
 
   return (
@@ -110,7 +79,7 @@ export default function Login() {
         handleFormSubmit={handleFormSubmit}
         formData={formData}
         setFormData={setFormData}
-        waiting={waiting}
+        waiting={isLoading}
         success={success}
         error={error}
       />

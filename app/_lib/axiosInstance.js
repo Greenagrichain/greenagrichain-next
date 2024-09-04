@@ -2,9 +2,9 @@ import axios from "axios";
 
 const axiosInstance = axios.create({
   baseURL: "https://greenagrichain-backend.onrender.com",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 export const axiosFetcher = (url) =>
