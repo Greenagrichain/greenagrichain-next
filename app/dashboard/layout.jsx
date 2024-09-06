@@ -34,8 +34,9 @@ export default function DashboardLayout({ children }) {
         JSON.stringify({ ...authData, user: newUserData })
       );
       authDispatch({ type: "UPDATE_USER", payload: newUserData });
+      console.log("woooow");
     }
-  }, [newUserData, authData, authDispatch]);
+  }, [newUserData]);
 
   return (
     <div className="dashboard relative flex min-h-screen w-full bg-muted/40">
