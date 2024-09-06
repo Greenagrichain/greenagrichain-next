@@ -43,9 +43,12 @@ export default function AdminFoundCard({ authContext }) {
           className="group"
           variant="outline"
           onClick={() => authContext.dispatch({ type: "LOGOUT" })}
+          asChild
         >
-          <IconArrowLeft className="group-hover:mr-3 mr-2 transition-all" />
-          Use Another Account
+          <Link href="/login">
+            <IconArrowLeft className="group-hover:mr-3 mr-2 transition-all" />
+            Use Another Account
+          </Link>
         </Button>
       </CardFooter>
     </Card>

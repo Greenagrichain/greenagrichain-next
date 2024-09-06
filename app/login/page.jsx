@@ -5,10 +5,8 @@ import LoginForm from "./LoginForm";
 
 import { useRouter } from "next/navigation";
 
-import useAuthContext from "@/lib/hooks/useAuthContext";
+import { toast } from "sonner";
 import axiosInstance from "@/lib/axiosInstance";
-import UserFoundCard from "./UserFoundCard";
-import AdminFoundCard from "./AdminFoundCard";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -16,13 +14,11 @@ export default function Login() {
     password: "",
   });
 
-  const [isAdmin, setIsAdmin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
   const router = useRouter();
-  const authContext = useAuthContext();
 
   async function handleFormSubmit(e) {
     e.preventDefault();
@@ -31,18 +27,14 @@ export default function Login() {
     try {
       const response = await axiosInstance.post("/api/auth/login", formData);
 
-      localStorage.setItem("_greenagrichain", JSON.stringify(response.data));
-      authContext.dispatch({ type: "LOGIN", payload: response.data });
-      defineSuccess(response.data.message + ". Redirecting to dashboard...");
+      defineSuccess(response.data.message);
+      toast.success(response.data.message);
 
-      if (response.data.user.role === "ADMIN") {
-        setIsAdmin(true);
-      } else {
-        router.push("/dashboard");
+      if (response.data.message.toLowerCase().includes("otp")) {
+        router.push("verify-otp?email=" + formData.email);
       }
     } catch (error) {
       defineError(error.response ? error.response.data.message : error.message);
-      console.log(error);
     }
 
     setIsLoading(false);
@@ -57,21 +49,17 @@ export default function Login() {
     setTimeout(() => setSuccess(""), 5000);
   }
 
-  if (authContext.authData?.userFound) {
-    return (
-      <>
-        {authContext.authData.user.role === "ADMIN" ? (
-          <AdminFoundCard authContext={authContext} />
-        ) : (
-          <UserFoundCard authContext={authContext} />
-        )}
-      </>
-    );
-  }
-
-  if (isAdmin) {
-    return <AdminFoundCard authContext={authContext} />;
-  }
+  // if (authContext.authData?.userFound) {
+  //   return (
+  //     <>
+  //       {authContext.authData.user.role === "ADMIN" ? (
+  //         <AdminFoundCard authContext={authContext} />
+  //       ) : (
+  //         <UserFoundCard authContext={authContext} />
+  //       )}
+  //     </>
+  //   );
+  // }
 
   return (
     <div>
