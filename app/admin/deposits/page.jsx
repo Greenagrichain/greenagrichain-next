@@ -92,8 +92,3 @@ export default function Deposits() {
     </div>
   );
 }
-
-function ActionsRenderer(row, col) {
-  console.log(row, col);
-  return <p>Hello</p>;
-}

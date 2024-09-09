@@ -6,16 +6,18 @@ import { IconUser } from "@tabler/icons-react";
 
 import { useState } from "react";
 import useAuthContext from "@/lib/hooks/useAuthContext";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import CopyToClipboard from "@/components/CopyToClipboard";
 
 export default function Component() {
   const [editMode, setEditMode] = useState(false);
   const {
     authData: {
-      user: { firstname, lastname, email, number: phone },
+      user: { id: userId, firstname, lastname, email, number: phone },
     },
     dispatch: authDispatch,
-    authData,
   } = useAuthContext();
+
   const [accountInfo, setAccountInfo] = useState({
     firstname,
     lastname,
@@ -103,6 +105,13 @@ export default function Component() {
         </div>
       </div>
 
+      <h2 className="text-lg font-semibold">Other Info</h2>
+      <Card className="wallet-address">
+        <CardHeader>
+          <CardTitle>Your wallet address: </CardTitle>
+          <CopyToClipboard data={userId} />
+        </CardHeader>
+      </Card>
       <div
         className="mt-8"
         onClick={() => {

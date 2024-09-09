@@ -51,6 +51,7 @@ import useAuthContext from "@/lib/hooks/useAuthContext";
 import EarnedSpentChart from "./EarnedSpentChart";
 import TotalBalanceChart from "./TotalBalanceChart";
 import { TransactionsChart } from "./TransactionsChart";
+import CopyToClipboard from "@/components/CopyToClipboard";
 
 export default function Dashboard() {
   const {
@@ -150,7 +151,12 @@ export default function Dashboard() {
                 </Card>
               </div>
             </div>
-
+            <Card className="wallet-address">
+              <CardHeader>
+                <CardTitle>Your wallet address: </CardTitle>
+                <CopyToClipboard data={user.id} />
+              </CardHeader>
+            </Card>
             <div className="charts">
               <Card>
                 <CardHeader>

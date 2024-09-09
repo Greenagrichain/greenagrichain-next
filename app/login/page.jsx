@@ -49,18 +49,6 @@ export default function Login() {
     setTimeout(() => setSuccess(""), 5000);
   }
 
-  // if (authContext.authData?.userFound) {
-  //   return (
-  //     <>
-  //       {authContext.authData.user.role === "ADMIN" ? (
-  //         <AdminFoundCard authContext={authContext} />
-  //       ) : (
-  //         <UserFoundCard authContext={authContext} />
-  //       )}
-  //     </>
-  //   );
-  // }
-
   return (
     <div>
       <LoginForm

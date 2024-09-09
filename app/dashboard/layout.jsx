@@ -12,7 +12,7 @@ import { toast } from "sonner";
 
 export default function DashboardLayout({ children }) {
   const { authData, dispatch: authDispatch } = useAuthContext();
-  if (!authData) redirect("/login");
+  if (!authData?.user) redirect("/login");
 
   const {
     data: newUserData,
@@ -22,7 +22,7 @@ export default function DashboardLayout({ children }) {
 
   if (error) {
     toast.error("Error fetching updated information", {
-      description: "refresh the page to try again.",
+      description: error.message + ". refresh the page to try again.",
       id: "userError",
     });
   }
@@ -34,7 +34,6 @@ export default function DashboardLayout({ children }) {
         JSON.stringify({ ...authData, user: newUserData })
       );
       authDispatch({ type: "UPDATE_USER", payload: newUserData });
-      console.log("woooow");
     }
   }, [newUserData]);
 

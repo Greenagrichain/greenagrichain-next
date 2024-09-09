@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { IconCopy, IconCopyCheck } from "@tabler/icons-react";
+import { IconCopy, IconCheck } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 
 import { useState } from "react";
@@ -20,7 +20,7 @@ export default function CopyToClipboard({
   }
 
   let copyTrigger = null;
-  if (copied && variant === "icon") copyTrigger = <IconCopyCheck size={20} />;
+  if (copied && variant === "icon") copyTrigger = <IconCheck size={20} />;
   if (!copied && variant === "icon") copyTrigger = <IconCopy size={20} />;
   if (!copied && variant !== "icon") copyTrigger = "Copy";
   if (copied && variant !== "icon") copyTrigger = "Copied";

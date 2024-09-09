@@ -33,7 +33,7 @@ export default function Sidenav({ className = "", navlinks }) {
       />
       <Separator className="w-[90%] self-center" />
 
-      <ul className="nav p-1 space-y-1 flex flex-col ">
+      <ul className="nav p-1 flex flex-col grow">
         {createNavlinks(navlinks, openedLinks, setOpenedLinks, currentUrl)}
       </ul>
     </aside>
@@ -42,7 +42,11 @@ export default function Sidenav({ className = "", navlinks }) {
 
 export function createNavlinks(links, openedLinks, setOpenedLinks, currentUrl) {
   const navlink = (l) => (
-    <li className={cn("list-none", {})} key={l.name + l.href}>
+    <li
+      className={cn("list-none mb-1", { "mt-auto": l.end })}
+      key={l.name + l.href}
+    >
+      {l.end && <Separator />}
       <Link
         href={l.exact || !l.children ? l.href : "#"}
         className={cn(

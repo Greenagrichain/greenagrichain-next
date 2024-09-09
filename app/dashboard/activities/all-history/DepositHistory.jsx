@@ -16,7 +16,7 @@ export default function DepositHistory() {
 
   if (error) {
     toast.error("Failed to fetch required data.", {
-      description: "Please reload the page.",
+      description: error.message,
     });
   }
 

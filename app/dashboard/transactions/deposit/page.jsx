@@ -28,14 +28,14 @@ export default function Deposit() {
 
   if (depositsError) {
     toast.error("Failed to fetch required data: " + depositsError.message, {
-      description: "Please reload the page.",
+      // description: "Please reload the page.",
       id: "error",
     });
   }
 
   return (
     <div className="my-5 p-4 flex gap-4 self-center flex-col">
-      <Card className="flex flex-col text-center">
+      <Card className="flex flex-col text-center w-fit">
         <CardHeader>
           <CardDescription>
             Account Balance
@@ -47,7 +47,7 @@ export default function Deposit() {
         </CardHeader>
         <CardFooter className="mt-auto flex-col gap-2">
           <CustomAlert
-            description="Note that your account balance is reflected only when your deposit
+            description="Your account balance will reflect only when your deposit
               has been verified"
             variant="warn"
             icon={<IconAlertTriangleFilled />}
@@ -59,7 +59,7 @@ export default function Deposit() {
           </Button>
         </CardFooter>
       </Card>
-      <Card className="w-min self-center">
+      <Card className="w-fit self-center">
         <CardHeader>
           <CardTitle className="text-xl">Fund your account</CardTitle>
           <CardDescription>

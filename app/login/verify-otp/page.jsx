@@ -24,7 +24,7 @@ import Loader from "@/components/Loader";
 export default function VerifyOTP() {
   const searchParams = useSearchParams();
   const [otpData, setOtpData] = useState({
-    email: searchParams.get("email"),
+    email: searchParams.get("email").replace(/\s/g, "+"),
     otp: "",
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -54,13 +54,14 @@ export default function VerifyOTP() {
       defineSuccess(response.data.message);
       toast.success(response.data.message);
 
-      if (authContext.authData.user.role === "ADMIN") {
+      if (response.data?.user?.role === "ADMIN") {
         setIsAdmin(true);
       } else {
         router.push("/dashboard");
       }
     } catch (error) {
       defineError(error.response ? error.response.data.message : error.message);
+      console.log(error);
     }
     setIsLoading(false);
   }
@@ -84,7 +85,7 @@ export default function VerifyOTP() {
         <CardHeader>
           <CardTitle className="text-center text-xl">Verify OTP</CardTitle>
           <CardDescription>
-            An OTP has been sent to your email. Enter the code below
+            An OTP has been sent to your email. Enter the OTP code below
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">

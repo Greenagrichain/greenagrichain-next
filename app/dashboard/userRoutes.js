@@ -1,3 +1,4 @@
+import { IconTransfer } from "@tabler/icons-react";
 import {
   IconCashRegister,
   IconBusinessplan,
@@ -40,6 +41,11 @@ const navlinks = [
         name: "Withdrawal",
         href: "/dashboard/transactions/withdrawal",
         icon: <IconCircleArrowDownLeft />,
+      },
+      {
+        name: "Transfer",
+        href: "/dashboard/transactions/transfer",
+        icon: <IconTransfer />,
       },
     ],
   },
@@ -97,7 +103,6 @@ const navlinks = [
     name: "Log out",
     href: "/logout",
     icon: <IconLogout2 />,
-    end: true,
   },
 ];
 

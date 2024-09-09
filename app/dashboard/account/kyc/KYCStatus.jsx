@@ -13,7 +13,7 @@ export default function KYCStatus({ setIsFormActive }) {
 
   if (error) {
     toast.error("Failed to fetch required data: " + error.message, {
-      description: "Please reload the page.",
+      // description: "Please reload the page.",
       id: "error",
     });
   }
