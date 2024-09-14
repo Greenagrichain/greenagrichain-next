@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Header from "@/components/Header";
-import ProductCard from "@/components/ProductCard";
+import ProductCard from "./ProductCard";
 
 import { products, categories, tags } from "@/lib/store";
 

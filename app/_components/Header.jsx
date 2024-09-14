@@ -124,7 +124,7 @@ const HeaderRibbon = () => {
 
           <li className="social flex items-center gap-1">
             <IconPhone className="hover:text-primary-light" />
-            +4154879201
+            +1 (609) 3095419
           </li>
           <li className="social flex gap-2">
             {[

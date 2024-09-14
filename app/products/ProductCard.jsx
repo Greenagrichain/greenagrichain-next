@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 
 import Autoplay from "embla-carousel-autoplay";
 import { IconShoppingCart } from "@tabler/icons-react";
+import { Separator } from "@/components/ui/separator";
 
 function ProductCard({
   name,
