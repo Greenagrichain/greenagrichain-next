@@ -3,7 +3,7 @@ import React from "react";
 import Header from "@/components/Header";
 import ProductCard from "./ProductCard";
 
-import { products, categories, tags } from "@/lib/store";
+import { products, categories, tags } from "./store";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
