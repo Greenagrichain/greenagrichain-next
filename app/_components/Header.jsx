@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 
 import {
   IconClock,
@@ -22,20 +22,20 @@ import {
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { name: "Home", href: "/index.html" },
-  { name: "Who we are", href: "/about.html" },
-  { name: "Offers", href: "/services.html" },
-  { name: "Finance", href: "/loan.html" },
-  { name: "Pricing", href: "/investments.html" },
-  { name: "Products", href: "/store.html" },
-  { name: "Get in touch", href: "/contact.html" },
+  { name: "Home", href: "/index" },
+  { name: "Who we are", href: "/about" },
+  { name: "Offers", href: "/services" },
+  { name: "Finance", href: "/loan" },
+  { name: "Pricing", href: "/investments" },
+  { name: "Products", href: "/store" },
+  { name: "Get in touch", href: "/contact" },
 ];
 
 export default function Header() {
   return (
     <header className="">
       <HeaderRibbon />
-      <nav className="flex relative justify-between lg:justify-around items-center ">
+      <nav className="flex px-2 relative justify-between lg:justify-around items-center ">
         <div className="logo-container">
           <img
             src="/images/greenagrichain-logo.png"
@@ -62,7 +62,7 @@ export default function Header() {
         </ul>
 
         <Button className="text-nowrap" asChild>
-          <a href="/login" className="hidden lg:inline-block">
+          <a href="/login" className="hidden lg:inline-block hover:text-white">
             Get Started Now!
           </a>
         </Button>
@@ -113,11 +113,11 @@ const HeaderRibbon = () => {
         </span>
       </div>
 
-      <div className="grow bg-primary">
+      <div className="grow bg-primary ">
         <ul className="social-group flex divide-x justify-end items-center *:px-6">
           <li className="social flex items-center gap-1">
             <IconMail className="hover:text-primary-light" />
-            <a href="mailto:support@greenagrichain.org">
+            <a href="mailto:support@greenagrichain.org" className="text-white">
               support@greenagrichain.org
             </a>
           </li>
@@ -134,7 +134,10 @@ const HeaderRibbon = () => {
               IconBrandTwitter,
             ].map((SocialIcon, _) => (
               <a key={_} href="#" rel="noreferrer">
-                <SocialIcon size={18} className="hover:text-primary-light" />
+                <SocialIcon
+                  size={18}
+                  className="hover:text-primary-light text-white"
+                />
               </a>
             ))}
           </li>

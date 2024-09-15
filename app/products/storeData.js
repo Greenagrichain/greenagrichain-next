@@ -12,8 +12,8 @@ export const products = [
     unit: "per unit",
     stock: 20,
     images: [
-      "products/all-purpose-2wd-tractor-1.jpg",
-      "products/all-purpose-2wd-tractor-2.jpg",
+      "/products/all-purpose-2wd-tractor-1.jpg",
+      "/products/all-purpose-2wd-tractor-2.jpg",
     ],
     details: {
       engine_power: "120 HP",
@@ -31,7 +31,7 @@ export const products = [
     price: 42000,
     unit: "per unit",
     stock: 10,
-    images: ["products/compact-utility-tractor-1.jpg"],
+    images: ["/products/compact-utility-tractor-1.jpg"],
     details: {
       engine_power: "100 HP",
       transmission: "5-speed manual",
@@ -50,7 +50,7 @@ export const products = [
     discountPercentage: 5,
     unit: "per unit",
     stock: 8,
-    images: ["products/high-torque-4wd-tractor-1.jpg"],
+    images: ["/products/high-torque-4wd-tractor-1.jpg"],
     details: {
       engine_power: "180 HP",
       transmission: "10-speed manual",
@@ -69,8 +69,8 @@ export const products = [
     unit: "per unit",
     stock: 12,
     images: [
-      "products/standard-2wd-tractor-1.jpg",
-      "products/standard-2wd-tractor-2.jpg",
+      "/products/standard-2wd-tractor-1.jpg",
+      "/products/standard-2wd-tractor-2.jpg",
     ],
     details: {
       engine_power: "110 HP",
@@ -92,8 +92,8 @@ export const products = [
     unit: "per unit",
     stock: 15,
     images: [
-      "products/heavy-duty-4wd-tractor-1.webp",
-      "products/heavy-duty-4wd-tractor-2.webp",
+      "/products/heavy-duty-4wd-tractor-1.webp",
+      "/products/heavy-duty-4wd-tractor-2.webp",
     ],
     details: {
       engine_power: "150 HP",
@@ -115,8 +115,8 @@ export const products = [
     unit: "per unit",
     stock: 7,
     images: [
-      "products/advanced-4wd-tractor-1.jpg",
-      "products/advanced-4wd-tractor-2.jpg",
+      "/products/advanced-4wd-tractor-1.jpg",
+      "/products/advanced-4wd-tractor-2.jpg",
     ],
     details: {
       engine_power: "200 HP",
@@ -135,7 +135,7 @@ export const products = [
     price: 41000,
     unit: "per unit",
     stock: 18,
-    images: ["products/utility-2wd-tractor-1.jpg"],
+    images: ["/products/utility-2wd-tractor-1.jpg"],
     details: {
       engine_power: "95 HP",
       transmission: "5-speed manual",
@@ -153,7 +153,7 @@ export const products = [
     price: 40000,
     unit: "per unit",
     stock: 25,
-    images: ["products/economy-2wd-tractor-1.jpg"],
+    images: ["/products/economy-2wd-tractor-1.jpg"],
     details: {
       engine_power: "85 HP",
       transmission: "4-speed manual",
@@ -174,8 +174,8 @@ export const products = [
     unit: "per unit",
     stock: 6,
     images: [
-      "products/powerful-4wd-tractor-1.jpg",
-      "products/powerful-4wd-tractor-2.jpg",
+      "/products/powerful-4wd-tractor-1.jpg",
+      "/products/powerful-4wd-tractor-2.jpg",
     ],
     details: {
       engine_power: "160 HP",
@@ -197,8 +197,8 @@ export const products = [
     unit: "per unit",
     stock: 5,
     images: [
-      "products/precision-4wd-tractor-1.jpg",
-      "products/precision-4wd-tractor-2.jpg",
+      "/products/precision-4wd-tractor-1.jpg",
+      "/products/precision-4wd-tractor-2.jpg",
     ],
     details: {
       engine_power: "170 HP",
@@ -221,9 +221,9 @@ export const products = [
     unit: "per unit",
     stock: 10,
     images: [
-      "products/agricultural-sprayer-tractor-1.jpg",
-      "products/agricultural-sprayer-tractor-2.jpg",
-      "products/agricultural-sprayer-tractor-3.jpg",
+      "/products/agricultural-sprayer-tractor-1.jpg",
+      "/products/agricultural-sprayer-tractor-2.jpg",
+      "/products/agricultural-sprayer-tractor-3.jpg",
     ],
     details: {
       engine_power: "100 HP",
@@ -245,9 +245,9 @@ export const products = [
     unit: "per unit",
     stock: 15,
     images: [
-      "products/heavy-duty-4wd-tractor-3.jpg",
-      "products/heavy-duty-4wd-tractor-1.jpg",
-      "products/heavy-duty-4wd-tractor-2.jpg",
+      "/products/heavy-duty-4wd-tractor-3.jpg",
+      "/products/heavy-duty-4wd-tractor-1.jpg",
+      "/products/heavy-duty-4wd-tractor-2.jpg",
     ],
     details: {
       engine_power: "150 HP",
@@ -268,7 +268,7 @@ export const products = [
     discountPercentage: 10,
     unit: "per 25kg bag",
     stock: 500,
-    images: ["products/corn-seeds-1.jpg", "products/corn-seeds-2.jpg"],
+    images: ["/products/corn-seeds-1.jpg", "/products/corn-seeds-2.jpg"],
     details: {
       germination_rate: "95%",
       growth_period: "90-120 days",
@@ -286,8 +286,8 @@ export const products = [
     unit: "per tractor",
     stock: 20,
     images: [
-      "products/compact-tractor-1.jpg",
-      "products/compact-tractor-2.jpg",
+      "/products/compact-tractor-1.jpg",
+      "/products/compact-tractor-2.jpg",
     ],
     details: {
       horsepower: "40 HP",
@@ -305,7 +305,7 @@ export const products = [
     price: 15000,
     unit: "per unit",
     stock: 50,
-    images: ["products/farming-drone-1.jpg", "products/farming-drone-2.jpg"],
+    images: ["/products/farming-drone-1.jpg", "/products/farming-drone-2.jpg"],
     details: {
       flight_time: "45 minutes",
       camera_resolution: "20MP",
@@ -325,8 +325,8 @@ export const products = [
     unit: "per ton",
     stock: 1000,
     images: [
-      "products/organic-fertilizer-1.jpg",
-      "products/organic-fertilizer-2.jpg",
+      "/products/organic-fertilizer-1.jpg",
+      "/products/organic-fertilizer-2.jpg",
     ],
     details: {
       npk_ratio: "4-4-4",
@@ -345,8 +345,8 @@ export const products = [
     unit: "per system (covers 10 hectares)",
     stock: 100,
     images: [
-      "products/smart-irrigation-1.jpg",
-      "products/smart-irrigation-2.jpg",
+      "/products/smart-irrigation-1.jpg",
+      "/products/smart-irrigation-2.jpg",
     ],
     details: {
       water_saving: "Up to 30%",
@@ -367,8 +367,8 @@ export const products = [
     unit: "per kit",
     stock: 30,
     images: [
-      "products/vertical-farming-1.jpg",
-      "products/vertical-farming-2.jpg",
+      "/products/vertical-farming-1.jpg",
+      "/products/vertical-farming-2.jpg",
     ],
     details: {
       growing_area: "10 square meters",
@@ -387,9 +387,9 @@ export const products = [
     unit: "per set of 10 collars",
     stock: 200,
     images: [
-      "products/livestock-collars-1.jpg",
-      "products/livestock-collars-2.jpg",
-      "products/livestock-collars-3.jpg",
+      "/products/livestock-collars-1.jpg",
+      "/products/livestock-collars-2.jpg",
+      "/products/livestock-collars-3.jpg",
     ],
     details: {
       battery_life: "Up to 5 years",
@@ -409,7 +409,10 @@ export const products = [
     discountPercentage: 10,
     unit: "per kit (100 sq meters)",
     stock: 50,
-    images: ["products/greenhouse-kit-1.jpg", "products/greenhouse-kit-2.jpg"],
+    images: [
+      "/products/greenhouse-kit-1.jpg",
+      "/products/greenhouse-kit-2.jpg",
+    ],
     details: {
       size: "10m x 10m x 3m (LxWxH)",
       material: "4mm twin-wall polycarbonate, aluminum frame",
@@ -427,7 +430,10 @@ export const products = [
     price: 1500,
     unit: "per kit",
     stock: 100,
-    images: ["products/beekeeping-kit-1.jpg", "products/beekeeping-kit-2.jpg"],
+    images: [
+      "/products/beekeeping-kit-1.jpg",
+      "/products/beekeeping-kit-2.jpg",
+    ],
     details: {
       hive_type: "Langstroth",
       includes: "Hive, frames, smoker, hive tool, protective suit",
