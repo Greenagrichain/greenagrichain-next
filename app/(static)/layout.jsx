@@ -11,11 +11,15 @@ import "/public/css/prettyPhoto.css";
 import "/public/css/shortcodes.css";
 import "/public/css/main.css";
 import "/public/css/responsive.css";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Greenagrichain | Store",
+  title: {
+    default: "Greenagrichain",
+    template: `Greenagrichain | %s`,
+  },
   keywords: ["Greenagrichain", "Greenagrichain", "Technology"],
   authors: [{ name: "TheGreenChain" }],
 };

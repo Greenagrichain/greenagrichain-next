@@ -1,6 +1,9 @@
 import React from "react";
 import { products } from "app/products/storeData";
-import { IconHeart } from "@tabler/icons-react";
+
+export const metadata = {
+  title: "Store",
+};
 
 export default function StoreExtended() {
   return (

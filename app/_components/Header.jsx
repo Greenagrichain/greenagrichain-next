@@ -33,73 +33,78 @@ const navLinks = [
 
 export default function Header() {
   return (
-    <header className="">
+    <>
       <HeaderRibbon />
-      <nav className="flex px-2 relative justify-between lg:justify-around items-center ">
-        <div className="logo-container">
-          <img
-            src="/images/greenagrichain-logo.png"
-            alt="Greenagrichain Logo"
-            className="logo"
-            width={96}
-            height={96}
-          />
-        </div>
+      <header className="sticky top-0 bg-neutral-100 shadow z-50">
+        <nav className="flex px-2  justify-between lg:justify-around items-center ">
+          <div className="logo-container">
+            <img
+              src="/images/greenagrichain-logo.png"
+              alt="Greenagrichain Logo"
+              className="logo"
+              width={96}
+              height={96}
+            />
+          </div>
 
-        <ul className="nav-links lg:flex gap-3 text-sm hidden">
-          {navLinks.map((item) => (
-            <li key={item.name + item.href}>
-              <a
-                href={item.href}
-                class={cn("transition p-2 uppercase hover:text-primary", {
-                  "text-primary": item.active,
-                })}
-              >
-                {item.name}
-              </a>
-            </li>
-          ))}
-        </ul>
+          <ul className="nav-links lg:flex gap-3 text-sm hidden">
+            {navLinks.map((item) => (
+              <li key={item.name + item.href}>
+                <a
+                  href={item.href}
+                  class={cn("transition p-2 uppercase hover:text-primary", {
+                    "text-primary": item.active,
+                  })}
+                >
+                  {item.name}
+                </a>
+              </li>
+            ))}
+          </ul>
 
-        <Button className="text-nowrap" asChild>
-          <a href="/login" className="hidden lg:inline-block hover:text-white">
-            Get Started Now!
-          </a>
-        </Button>
+          <Button className="text-nowrap" asChild>
+            <a
+              href="/login"
+              className="hidden lg:inline-block hover:text-white"
+            >
+              Get Started Now!
+            </a>
+          </Button>
 
-        <DropdownMenu>
-          <DropdownMenuTrigger className="lg:hidden">
-            <IconMenu2 />
-          </DropdownMenuTrigger>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="lg:hidden">
+              <IconMenu2 />
+            </DropdownMenuTrigger>
 
-          <DropdownMenuContent asChild>
-            <ul className="text-center w-screen lg:hidden gap-3 text-sm">
-              {navLinks.map((item) => (
-                <DropdownMenuItem key={item.name + item.href} asChild>
-                  <li className="hover:bg-primary/20 outline-none">
-                    <a
-                      href={item.href}
-                      className="transition block w-full p-2 uppercase"
-                    >
-                      {item.name}
-                    </a>
+            <DropdownMenuContent asChild>
+              <ul className="text-center w-screen lg:hidden gap-3 text-sm">
+                {navLinks.map((item) => (
+                  <DropdownMenuItem key={item.name + item.href} asChild>
+                    <li className="hover:bg-primary/20 outline-none">
+                      <a
+                        href={item.href}
+                        className="transition block w-full p-2 uppercase"
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  </DropdownMenuItem>
+                ))}
+                <DropdownMenuItem asChild>
+                  <li className="hover:bg-transparent">
+                    <Button className="text-nowrap m-auto">
+                      <a href="/login" className="">
+                        Get Started Now!
+                      </a>
+                    </Button>
                   </li>
                 </DropdownMenuItem>
-              ))}
-              <DropdownMenuItem asChild>
-                <li className="hover:bg-transparent">
-                  <Button className="text-nowrap m-auto">
-                    <a href="/login" className="">
-                      Get Started Now!
-                    </a>
-                  </Button>
-                </li>
-              </DropdownMenuItem>
-            </ul>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </nav>
-    </header>
+              </ul>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </nav>
+      </header>
+    </>
   );
 }
 
