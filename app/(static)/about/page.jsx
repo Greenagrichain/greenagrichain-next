@@ -247,9 +247,9 @@ export default function About() {
                   </div>
                   <div className="col-md-8">
                     <p className="mb-0 ml-30 res-767-mt-20 res-767-ml-10">
-                      The core motivation behind Greenagrichain's presence is to
-                      advance agricultural progress and work towards a more
-                      sustainable future.
+                      The core motivation behind Greenagrichain&apos;s presence
+                      is to advance agricultural progress and work towards a
+                      more sustainable future.
                     </p>
                   </div>
                 </div>

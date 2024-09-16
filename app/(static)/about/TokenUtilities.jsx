@@ -22,9 +22,13 @@ export default function TokenUtilities() {
 
 function renderList({ list, level = 0 }) {
   return (
-    <Collapsible className="pl-4 border-l py-2" defaultOpen={true}>
-      {Object.entries(list).map(([prop, value]) => (
-        <>
+    <>
+      {Object.entries(list).map(([prop, value], _) => (
+        <Collapsible
+          key={prop + _}
+          className="pl-4 border-l py-2"
+          defaultOpen={true}
+        >
           <CollapsibleTrigger asChild>
             <h3
               className={cn(
@@ -44,8 +48,8 @@ function renderList({ list, level = 0 }) {
               value !== null &&
               renderList({ list: value, level: level + 1 })}
           </CollapsibleContent>
-        </>
+        </Collapsible>
       ))}
-    </Collapsible>
+    </>
   );
 }
